@@ -50,6 +50,7 @@ const initPOST = ({ initPostRequest }) => new Promise(
 const searchPOST = ({ searchPostRequest }) => new Promise(
   async (resolve, reject) => {
     try {
+
       resolve(Service.successResponse({
         searchPostRequest,
       }));

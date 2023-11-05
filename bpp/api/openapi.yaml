@@ -28,7 +28,11 @@ paths:
                     intent:
                       item:
                         descriptor:
-                          name: MRI Scan
+                          name: Ambulance
+                      fulfilment:
+                        start:
+                          location:
+                            gps: 41.40338, 2.17403
             schema:
               $ref: '#/components/schemas/_search_post_request'
         description: One Protocol-Consumer Platform searches for healthcare services/product

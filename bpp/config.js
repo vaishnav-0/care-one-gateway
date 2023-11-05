@@ -10,7 +10,7 @@ const config = {
   MONGOURI: 'mongodb+srv://careone:careone123$@cluster0.6ngocmp.mongodb.net',
   bpp_id: 12345,
   bap_keys:{
-    98765:
+    98765: "public.pem"
   }
 
 };
