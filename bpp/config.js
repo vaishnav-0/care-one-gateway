@@ -8,6 +8,9 @@ const config = {
   CONTROLLER_DIRECTORY: path.join(__dirname, 'controllers'),
   PROJECT_DIR: __dirname,
   MONGOURI: 'mongodb+srv://careone:careone123$@cluster0.6ngocmp.mongodb.net',
+  bap_url: 'localhost:8001',
+  bpp_url: 'http://127.0.0.1:8082',
+  bg_url: 'http://127.0.0.1:8080',
   bpp_id: 12345,
   bap_keys:{
     98765: "public.pem"

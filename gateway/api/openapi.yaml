@@ -40,201 +40,66 @@ paths:
                 $ref: '#/components/schemas/_search_post_200_response'
           description: Acknowledgement of message received
       tags:
-      - One Protocol Provider Platform
       - One Protocol Gateway (DG)
-      x-eov-operation-handler: controllers/OneProtocolProviderPlatformController
-  /on_status:
+      x-eov-operation-handler: controllers/OneProtocolGatewayDGController
+  /on_search:
     post:
-      description: Fetch the status of a Service
-      operationId: on_statusPOST
+      description: Send catalog
+      operationId: on_searchPOST
       requestBody:
         content:
           application/json:
             examples:
-              Patient waiting:
+              Catalog of available nearby ambulances:
                 value:
                   context:
                     domain: nic2004:85110
                     country: IND
                     city: std:080
-                    action: on_status
+                    action: on_search
                     core_version: 0.0.1
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
                     message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
                     timestamp: 2021-03-23T10:00:40.065Z
                   message:
-                    order:
-                      id: "26492"
-                      provider:
-                        id: "1"
+                    catalog:
+                      descriptor:
+                        name: Provider1
+                      providers:
+                      - id: 289edce4-d002-4962-b311-4c025e22b4f6
                         descriptor:
-                          name: Provider1
-                      state: PROVISIONALLY_BOOKED
-                      items:
-                      - id: "1"
-                        descriptor:
-                          name: Ambulance
-                        fulfillment_id: "2"
-                        provider_id: "1"
-                      billing:
-                        name: John Doe
-                        address:
-                          door: "12"
-                          building: Salarpuria Greenage
-                          street: "No 7, Hosur Road"
-                          area_code: "560068"
-                        email: john.doe@example.com
-                        phone: +91-9999999999
-                      fulfillment:
-                        id: "2"
-                        type: GENERAL-AMBULANCE
-                        person:
-                          id: "1"
-                          name: Name1
-                          image: https://image/of/person.png
-                          cred: smc:13-50839
-                        state:
+                          name: Provider 1
+                        categories:
+                        - id: "1"
                           descriptor:
-                            code: WAITING
-                        customer:
-                          "./One Protocol-0_7_1.health_id": 61-8787-9274-4422
-                      quote:
-                        price:
-                          currency: INR
-                          value: "1000"
-                          breakup:
-                          - "./One-Protocol-0_7_1.charge": "1000"
-                      payment:
-                        uri: payto://ban/98273982749428?amount=INR:110&ifsc=SBIN0000575&message=hello
-                        type: ON-ORDER
-                        status: PAID
-              Ambulance en route:
-                value:
-                  context:
-                    domain: nic2004:85110
-                    country: IND
-                    city: std:080
-                    action: on_status
-                    core_version: 0.0.1
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
-                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
-                    timestamp: 2021-03-23T10:00:40.065Z
-                  message:
-                    order:
-                      id: "26492"
-                      provider:
-                        id: "1"
-                        descriptor:
-                          name: Provider1
-                      state: BOOKED
-                      items:
-                      - id: "1"
-                        descriptor:
-                          name: Ambulance
-                        fulfillment_id: "2"
-                        provider_id: "1"
-                      billing:
-                        name: John Doe
-                        address:
-                          door: "12"
-                          building: Salarpuria Greenage
-                          street: "No 7, Hosur Road"
-                          area_code: "560068"
-                        email: john.doe@example.com
-                        phone: +91-9999999999
-                      fulfillment:
-                        id: "2"
-                        type: GENERAL-AMBULANCE
-                        person:
-                          id: "1"
-                          name: Name1
-                          image: https://image/of/person.png
-                          cred: smc:13-50839
-                        state:
-                          descriptor:
-                            code: EN_ROUTE
-                        customer:
-                          "./One-Protocol-0_7_1.health_id": 61-8787-9274-4422
-                      quote:
-                        price:
-                          currency: INR
-                          value: "1000"
-                          breakup:
-                          - "./One-Protocol-0_7_1.charge": "1000"
-                      payment:
-                        uri: payto://ban/98273982749428?amount=INR:110&ifsc=SBIN0000575&message=hello
-                        type: ON-ORDER
-                        status: PAID
-              Journey complete:
-                value:
-                  context:
-                    domain: nic2004:85110
-                    country: IND
-                    city: std:080
-                    action: on_status
-                    core_version: 0.0.1
-                    transaction_id: 8ad631e4-01e7-44e1-a999-db41ef0ae4f6
-                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
-                    timestamp: 2021-03-23T10:00:40.065Z
-                  message:
-                    order:
-                      id: "26492"
-                      provider:
-                        id: "1"
-                        descriptor:
-                          name: Provider1
-                      state: COMPLETED
-                      items:
-                      - id: "1"
-                        descriptor:
-                          name: Ambulance
-                        fulfillment_id: "2"
-                        provider_id: "1"
-                      billing:
-                        name: John Doe
-                        address:
-                          door: "12"
-                          building: Salarpuria Greenage
-                          street: "No 7, Hosur Road"
-                          area_code: "560068"
-                        email: john.doe@example.com
-                        phone: +91-9999999999
-                      fulfillment:
-                        id: "2"
-                        type: GENERAL-AMBULANCE
-                        person:
-                          id: "1"
-                          name: Name1
-                          image: https://image/of/person.png
-                          cred: smc:13-50839
-                        state:
-                          descriptor:
-                            code: FINISHED
-                        customer:
-                          "./One-Protocol-0_7_1.health_id": 61-8787-9274-4422
-                      quote:
-                        price:
-                          currency: INR
-                          value: "1000"
-                          breakup:
-                          - "./One-Protocol-0_7_1.charge": "1000"
-                      payment:
-                        uri: payto://ban/98273982749428?amount=INR:110&ifsc=SBIN0000575&message=hello
-                        type: ON-ORDER
-                        status: PAID
+                            name: Emergency
+                        fulfillments:
+                        - id: "1"
+                          type: GENERAL-AMBULANCE
+                          person:
+                            id: "1"
+                            name: Name1
+                            image: https://image/of/person.png
+                            cred: OneId:237402938409485039850935
+                        - id: "2"
+                          type: ICU-AMBULANCE
+                          person:
+                            id: "1"
+                            name: Name2
+                            image: https://image/of/person.png
+                            cred: OneId:237402938409485039850935
             schema:
-              $ref: '#/components/schemas/_on_status_post_request'
-        description: Describes the fulfillment status of the order
+              $ref: '#/components/schemas/_on_search_post_request'
+        description: Sends catalog of emergency services as a response to /search
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/_search_post_200_response'
+                $ref: '#/components/schemas/_on_search_post_200_response'
           description: Acknowledgement of message received
       tags:
-      - One Protocol Consumer Platform
-      x-eov-operation-handler: controllers/OneProtocolConsumerPlatformController
+      - One Protocol Gateway (DG)
+      x-eov-operation-handler: controllers/OneProtocolGatewayDGController
 components:
   schemas:
     Tracking:
